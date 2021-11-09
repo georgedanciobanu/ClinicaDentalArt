@@ -1,0 +1,45 @@
+﻿@model ClinicaDentalArt.Models.Echipa
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="text-start">
+    <h2>Sterge</h2>
+    <h4>Membru Echipa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Specializare)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Specializare)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <div class="text-start col-md-12 pb-4 ">
+                <input type="submit" value="Sterge" class="btn btn-danger" />
+            </div>
+        </div>
+
+        <div class="form-actions no-color">
+
+            @Html.ActionLink("Inapoi", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

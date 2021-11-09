@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ClinicaDentalArt.Models.Serviciu>
+
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<div class="text-center" >
+    <h2>Servicii</h2>
+</div>
+<br />
+@{
+    if (User.IsInRole("Admin"))
+    {
+    <p>
+        <div class="text-end mx-5 px-2">
+            @Html.ActionLink("Adauga serviciu", "Create", null, new { @class = "btn btn-success" })
+        </div>
+    </p>
+    }
+}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Nume)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Info)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Info)
+            </td>
+            <td align="center">
+                @{
+                    if (User.IsInRole("Admin"))
+                    {
+                        <a href="@Url.Action("Edit", new { id = item.ID })" class="btn btn-primary" title="Modifica"><span class="bi bi-pencil"> </span> </a>
+                        <a href="@Url.Action("Details", new { id = item.ID })" class="btn btn-success" title="Detalii"><span class="bi bi-book"> </span> </a>
+                        <a href="@Url.Action("Delete", new { id = item.ID })" class="btn btn-danger" title="Sterge"><span class="bi bi-trash"> </span> </a>
+                    }
+                }
+            </td>
+        </tr>
+    }
+
+</table>

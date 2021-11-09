@@ -1,0 +1,35 @@
+﻿@model ClinicaDentalArt.Models.Pret
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="text-start">
+    <h2>Detalii</h2>
+    <h4>Pret</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valoare)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valoare)
+        </dd>
+
+    </dl>
+    @Html.ActionLink("Modifica", "Edit", new { id = Model.ID }, new { @class = "btn btn-success" })
+</div>
+<br />
+<p>
+    
+    @Html.ActionLink("Inapoi", "Index", null, new { @class = "btn btn-primary" })
+</p>

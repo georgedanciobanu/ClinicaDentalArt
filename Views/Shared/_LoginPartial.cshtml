@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item ms-2 d-none d-md-inline btn px-1 text-success h6">
+                @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "btn btn-success text-white" })
+            </li>
+            <li class="nav-item d-none d-md-inline btn px-1"><a class="btn btn-success text-white h6" href="javascript:document.getElementById('logoutForm').submit()">Iesire</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item ms-2 d-none d-md-inline px-1 h6">
+            @Html.ActionLink("Inregistrare", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-success text-white" })
+        </li>
+        <li class="nav-item ms-2 d-none d-md-inline px-1 h6">
+            @Html.ActionLink("Intra in cont", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-success text-white" })
+        </li>
+    </ul>
+}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>

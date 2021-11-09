@@ -1,0 +1,6 @@
+﻿
+body {
+    $primary:: #c29938;
+}
+
+@import '~/Content/bootstrap/bootstrap.scss';

@@ -1,0 +1,59 @@
+﻿@model ClinicaDentalArt.Models.Pret
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <section class="bg-light">
+        <div class="container-lg">
+            <br />
+            <div class="text-center">
+                <h2>Adauga</h2>
+                <p class="lead">Pret</p>
+            </div>
+            <div class="row justify-content-center my-5 ">
+                <div class="col-lg-6 ">
+                    <form>
+                        <div class="form-horizontal">
+                            <h4></h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Nume, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Nume, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Nume, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Valoare, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.Valoare, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Valoare, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="text-center col-md-12 pt-4 ">
+                                    <input type="submit" value="Adauga Pret" class="btn btn-success" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br />
+}
+
+<div>
+    @Html.ActionLink("Inapoi", "Index", null, new { @class = "btn btn-primary" })
+</div>
+

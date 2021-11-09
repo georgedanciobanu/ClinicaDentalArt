@@ -1,0 +1,45 @@
+﻿@model ClinicaDentalArt.Models.Pret
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="text-start">
+    <h2>Sterge</h2>
+    <h4>Pret</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valoare)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valoare)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <div class="text-start col-md-13 pt-4 pb-4 ">
+                <input type="submit" value="Sterge" class="btn btn-danger" />
+            </div>
+        </div>
+
+        <div class="text-start form-actions no-color">
+
+            @Html.ActionLink("Inapoi", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

@@ -1,0 +1,124 @@
+﻿@model IEnumerable<ClinicaDentalArt.Models.Programare>
+
+@{
+    ViewBag.Title = "Programari";
+}
+<br />
+<div class="text-center" > 
+    <h2>Programari</h2>
+</div>
+<p>
+    <div class="text-end mx-4 px-2">
+        @Html.ActionLink("Programeaza-te Online!", "Create", null, new { @class = "btn btn-success" })
+    </div>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prenume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tratament)
+            </th>
+            <th>
+                @Html.ActionLink("Data", "Index", new { sortOrder = ViewBag.DataSortParam })
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefon)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.EchipaID)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        if (User.IsInRole("User") && item.Tags.Contains(User.Identity.Name))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prenume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tratament)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefon)
+                </td>
+
+                <td>
+                    @{
+                        var Nume = string.Empty;
+                        foreach (var e in ViewBag.Echipe)
+                        {
+                            if (e.EchipaID == item.EchipaID)
+                            {
+                                Nume = e.Nume;
+                            }
+                        }
+                    }
+                    @Html.DisplayFor(modelItem => Nume)
+                </td>
+                <td align="center">
+                    <a href="@Url.Action("Edit", new { id = item.ID })" class="btn btn-primary" title="Modifica" ><span class="bi bi-pencil-square"> </span> </a>
+                    <a href="@Url.Action("Details", new { id = item.ID })" class="btn btn-success" title="Detalii" ><span class="bi bi-book"> </span> </a>
+                </td>
+            </tr>
+        }
+
+        if (User.IsInRole("Admin"))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prenume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tratament)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefon)
+                </td>
+
+                <td>
+                    @{
+                        var Nume = string.Empty;
+                        foreach (var e in ViewBag.Echipe)
+                        {
+                            if (e.EchipaID == item.EchipaID)
+                            {
+                                Nume = e.Nume;
+                            }
+                        }
+                    }
+                    @Html.DisplayFor(modelItem => Nume)
+                </td>
+                <td align="center">
+                    <a href="@Url.Action("Edit", new { id = item.ID })" class="btn btn-primary" title="Modifica" ><span class="bi bi-pencil-square"> </span> </a>
+                    <a href="@Url.Action("Details", new { id = item.ID })" class="btn btn-success" title="Detalii" ><span class="bi bi-book"> </span> </a>
+                    <a href="@Url.Action("Delete", new { id = item.ID })" class="btn btn-danger" title="Sterge" ><span class="bi bi-trash"> </span> </a>
+                </td>
+            </tr>
+        }
+    }
+</table>
